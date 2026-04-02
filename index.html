@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Veda 🌸</title>
+
+<style>
+body {
+  margin:0;
+  padding:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
+  font-family: 'Segoe UI', sans-serif;
+  text-align:center;
+}
+
+.box {
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  width:85%;
+  max-width:420px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform: translateY(20px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+h2 {
+  color:#ff4d88;
+  margin-bottom:10px;
+}
+
+.subtitle {
+  font-size:14px;
+  color:#888;
+  margin-bottom:15px;
+}
+
+#text p {
+  opacity:0;
+  transform: translateY(15px);
+  transition: all 0.6s ease;
+  margin:12px 0;
+  color:#444;
+  line-height:1.7;
+}
+
+.show {
+  opacity:1 !important;
+  transform: translateY(0) !important;
+}
+
+.highlight {
+  color:#ff4d88;
+  font-weight:bold;
+  font-size:17px;
+}
+
+button {
+  margin-top:15px;
+  padding:10px 22px;
+  border:none;
+  background:#ff4d88;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:14px;
+  transition:0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+  <h2>For You 🌸</h2>
+  <div class="subtitle">open this slowly…</div>
+
+  <div id="text"></div>
+
+  <button onclick="showMessage()">Open 💌</button>
+</div>
+
+<script>
+function showMessage() {
+
+const lines = [
+
+"Good morning Veda❤️",
+
+"I know i might said this before and i genuinely mean it …",
+
+"You’re actually a really good human being.",
+"The way you think, the way you carry yourself… it’s rare.",
+
+"And honestly, you're already perfect the way you are,",
+"and you don’t have to overthink every little thing.",
+
+"Not everything deserves that much space in your head.",
+
+"There’s something about your vibe,",
+"it’s calm… a little different… and kinda addictive 😌",
+
+"And yeah…",
+
+'✨ <span class="highlight">Keep smiling</span> ✨',
+
+"Because your smile is honestly more precious than you think.",
+"And it makes things around you feel a little better too.",
+
+"So yeah… just stay the way you are.",
+
+"Have a really good day 🌸"
+];
+
+let container = document.getElementById("text");
+container.innerHTML = "";
+
+lines.forEach((line, index) => {
+  let p = document.createElement("p");
+  p.innerHTML = line;
+  container.appendChild(p);
+
+  setTimeout(() => {
+    p.classList.add("show");
+  }, index * 700);
+});
+
+}
+</script>
+
+</body>
+</html>
