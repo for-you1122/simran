@@ -1,144 +1,255 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Veda 🌸</title>
+<title>For You ❤️</title>
 
 <style>
 body {
-  margin:0;
-  padding:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background: linear-gradient(135deg, #ffd6e0, #ffe6f0);
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  text-align:center;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  text-align: center;
+  overflow-x: hidden;
 }
 
-.box {
-  background:white;
-  padding:35px;
-  border-radius:20px;
-  width:85%;
-  max-width:420px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.15);
-  animation: fadeIn 1s ease;
+/* Lock Screen */
+#lockScreen {
+  margin-top: 150px;
 }
 
-@keyframes fadeIn {
-  from { opacity:0; transform: translateY(20px); }
-  to { opacity:1; transform: translateY(0); }
+#mainContent {
+  display: none;
 }
 
-h2 {
-  color:#ff4d88;
-  margin-bottom:10px;
-}
-
-.subtitle {
-  font-size:14px;
-  color:#888;
-  margin-bottom:15px;
-}
-
-#text p {
-  opacity:0;
-  transform: translateY(15px);
-  transition: all 0.6s ease;
-  margin:12px 0;
-  color:#444;
-  line-height:1.7;
-}
-
-.show {
-  opacity:1 !important;
-  transform: translateY(0) !important;
-}
-
-.highlight {
-  color:#ff4d88;
-  font-weight:bold;
-  font-size:17px;
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
 button {
-  margin-top:15px;
-  padding:10px 22px;
-  border:none;
-  background:#ff4d88;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:14px;
-  transition:0.3s;
+  padding: 10px 20px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 10px;
 }
 
-button:hover {
-  transform: scale(1.05);
+/* Slides */
+.container {
+  padding-top: 80px;
+}
+
+.slide {
+  display: none;
+  animation: fade 1s ease;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* Photos */
+.photos img {
+  width: 120px;
+  margin: 10px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.photos img:hover {
+  transform: scale(1.1);
+}
+
+/* Penguins */
+.penguins div {
+  font-size: 60px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px;
+  transition: 0.3s;
+}
+
+.penguins div:hover {
+  transform: scale(1.3);
+}
+
+/* Music button */
+.music-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fade {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Floating hearts */
+.hearts::before {
+  content: "❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️";
+  position: fixed;
+  width: 100%;
+  bottom: -50px;
+  animation: floatUp 10s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes floatUp {
+  from {transform: translateY(0);}
+  to {transform: translateY(-100vh);}
 }
 </style>
 
 </head>
-
 <body>
 
-<div class="box">
-  <h2>For You 🌸</h2>
-  <div class="subtitle">open this slowly…</div>
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <h2>Enter Passcode 🔐</h2>
+  <input type="password" id="passInput" placeholder="Enter code">
+  <button onclick="checkPass()">Unlock</button>
+</div>
 
-  <div id="text"></div>
+<!-- MAIN CONTENT -->
+<div id="mainContent">
 
-  <button onclick="showMessage()">Open 💌</button>
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mp3">
+</audio>
+
+<audio id="voiceNote">
+  <source src="assets/voice.mp3" type="audio/mp3">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
+
+<div class="container">
+
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <h1>Happy Birthday ❤️</h1>
+    <p id="typing"></p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <h2>Our Memories 💕</h2>
+    <div class="photos">
+      <img src="assets/img1.jpg">
+      <img src="assets/img2.jpg">
+      <img src="assets/img3.jpg">
+    </div>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <h2>Choose a Penguin 🐧</h2>
+    <div class="penguins">
+      <div onclick="showMessage(1)">🐧</div>
+      <div onclick="showMessage(2)">🐧</div>
+      <div onclick="showMessage(3)">🐧</div>
+    </div>
+    <p id="message"></p>
+    <button onclick="nextSlide()">Next</button>
+  </div>
+
+  <!-- Final Slide -->
+  <div class="slide">
+    <h1>I Love You ❤️</h1>
+    <p>You’re my favorite person. Always.</p>
+  </div>
+
+</div>
+
+<div class="hearts"></div>
+
 </div>
 
 <script>
-function showMessage() {
+/* PASSWORD */
+function checkPass() {
+  let pass = document.getElementById("passInput").value;
 
-const lines = [
+  if (pass === "1234") {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+    startExperience();
+  } else {
+    alert("Wrong passcode ❌");
+  }
+}
 
-"Good morning Veda❤️",
+/* START */
+function startExperience() {
+  typingEffect();
 
-"I know i might said this before and i genuinely mean it …",
+  document.body.addEventListener("click", () => {
+    document.getElementById("bgMusic").play().catch(()=>{});
+    document.getElementById("voiceNote").play().catch(()=>{});
+  }, { once: true });
+}
 
-"You’re actually a really good human being.",
-"The way you think, the way you carry yourself… it’s rare.",
+/* SLIDES */
+let current = 0;
+let slides = document.querySelectorAll(".slide");
 
-"And honestly, you're already perfect the way you are,",
-"and you don’t have to overthink every little thing.",
+function nextSlide() {
+  slides[current].classList.remove("active");
+  current++;
+  if (current >= slides.length) current = slides.length - 1;
+  slides[current].classList.add("active");
+}
 
-"Not everything deserves that much space in your head.",
+/* TYPING EFFECT */
+const text = "You are not just special… you are my favorite feeling ❤️";
+let i = 0;
 
-"There’s something about your vibe,",
-"it’s calm… a little different… and kinda addictive 😌",
+function typingEffect() {
+  let el = document.getElementById("typing");
+  let interval = setInterval(() => {
+    if (i < text.length) {
+      el.innerHTML += text.charAt(i);
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 50);
+}
 
-"And yeah…",
+/* PENGUIN MESSAGE */
+function showMessage(num) {
+  let msg = document.getElementById("message");
 
-'✨ <span class="highlight">Keep smiling</span> ✨',
+  if (num === 1) {
+    msg.innerText = "You make everything better ❤️";
+  } else if (num === 2) {
+    msg.innerText = "I’d choose you again and again 💕";
+  } else {
+    msg.innerText = "Stay with me forever 🥺";
+  }
+}
 
-"Because your smile is honestly more precious than you think.",
-"And it makes things around you feel a little better too.",
+/* MUSIC */
+function toggleMusic() {
+  let music = document.getElementById("bgMusic");
 
-"So yeah… just stay the way you are.",
-
-"Have a really good day 🌸"
-];
-
-let container = document.getElementById("text");
-container.innerHTML = "";
-
-lines.forEach((line, index) => {
-  let p = document.createElement("p");
-  p.innerHTML = line;
-  container.appendChild(p);
-
-  setTimeout(() => {
-    p.classList.add("show");
-  }, index * 700);
-});
-
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
 }
 </script>
 
